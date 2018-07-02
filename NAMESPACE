@@ -1,0 +1,19 @@
+exportPattern("^[[:alpha:]]+")
+
+importFrom(methods, as)
+importFrom(utils, installed.packages)
+importFrom(utils, globalVariables)
+
+import(Biostrings)
+import(IRanges)
+
+importFrom(ShortRead, readFastq)
+importFrom(ShortRead, sread)
+
+importFrom(tibble, tibble, is_tibble, as_tibble, enframe)
+importFrom(dplyr, bind_rows, bind_cols, mutate, arrange, filter, group_by, ungroup, n, rename, select, summarise, left_join)
+importFrom(tidyr, `%>%`, unnest)
+importFrom(stringr, str_sub, str_split)
+importFrom(purrr, as_vector)
+
+import(parallel)
