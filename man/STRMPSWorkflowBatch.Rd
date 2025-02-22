@@ -4,8 +4,13 @@
 \alias{STRMPSWorkflowBatch}
 \title{Batch wrapper for the workflow function}
 \usage{
-STRMPSWorkflowBatch(input, output, ignorePattern = NULL,
-  continueCheckpoint = NULL, control = workflow.control())
+STRMPSWorkflowBatch(
+  input,
+  output,
+  ignorePattern = NULL,
+  continueCheckpoint = NULL,
+  control = workflow.control()
+)
 }
 \arguments{
 \item{input}{A directory where fastq input-files are stored.}

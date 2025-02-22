@@ -4,7 +4,9 @@
 \name{stringCoverageGenotypeList}
 \alias{stringCoverageGenotypeList}
 \title{Combined string coverage and genotype information}
-\format{A list of \link{tibble}'s one for each of the 10 markers containing the combined string coverage and genotypic information.}
+\format{
+A list of \link[tibble]{tibble}'s one for each of the 10 markers containing the combined string coverage and genotypic information.
+}
 \usage{
 data("stringCoverageGenotypeList")
 }

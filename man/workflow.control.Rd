@@ -4,21 +4,32 @@
 \alias{workflow.control}
 \title{Workflow default options}
 \usage{
-workflow.control(numberOfMutations = 1, numberOfThreads = 4,
-  createdThresholdSignal = 0.05, thresholdHomozygote = 0.4,
-  internalTrace = FALSE, simpleReturn = TRUE, identifyNoise = FALSE,
-  identifyStutter = FALSE, flankingRegions = NULL, useSTRaitRazor = FALSE,
-  trimRegions = TRUE, restrictType = NULL, trace = TRUE,
-  variantDatabase = NULL, reduceSize = FALSE)
+workflow.control(
+  numberOfMutations = 1,
+  numberOfThreads = 4,
+  createdThresholdSignal = 0.05,
+  thresholdHomozygote = 0.4,
+  internalTrace = FALSE,
+  simpleReturn = TRUE,
+  identifyNoise = FALSE,
+  identifyStutter = FALSE,
+  flankingRegions = NULL,
+  trimRegions = TRUE,
+  restrictType = NULL,
+  trace = TRUE,
+  variantDatabase = NULL,
+  reduceSize = FALSE,
+  additionalFlags = TRUE
+)
 }
 \arguments{
 \item{numberOfMutations}{The maximum number of mutations (base-calling errors) allowed during flanking region identification.}
 
-\item{numberOfThreads}{The number of threads used by either the \link{mclapply}-function (stuck at '2' on windows) or STRaitRazor.}
+\item{numberOfThreads}{The number of threads used by the \link[parallel]{mclapply}-function (stuck at '2' on windows).}
 
 \item{createdThresholdSignal}{Noise threshold.}
 
-\item{thresholdHomozygote}{Homozygote threshold for genotype identiication.}
+\item{thresholdHomozygote}{Homozygote threshold for genotype identification.}
 
 \item{internalTrace}{Show trace.}
 
@@ -30,17 +41,17 @@ workflow.control(numberOfMutations = 1, numberOfThreads = 4,
 
 \item{flankingRegions}{The flanking regions used to identify the STR regions. If 'NULL' a default set is loaded and used.}
 
-\item{useSTRaitRazor}{TRUE/FALSE: Should the STRaitRazor command line tool (only linux is implemented) be used for flanking region identification.}
-
 \item{trimRegions}{TRUE/FALSE: Should the identified regions be further trimmed.}
 
 \item{restrictType}{A character vector specifying the marker 'Types' to be identified.}
 
 \item{trace}{TRUE/FALSE: Should a trace be shown?}
 
-\item{variantDatabase}{A \link{tibble} of 'trusted' STR regions.}
+\item{variantDatabase}{A \link[tibble]{tibble} of 'trusted' STR regions containing columns for 'Marker', 'Type', and 'Region'.}
 
 \item{reduceSize}{TRUE/FALSE: Should the size of the data-set be reduced using the quality and the variant database?}
+
+\item{additionalFlags}{TRUE/FALSE: Should the 'flankingRegions'-object be used to extract additional information from the flanking regions of each string?}
 }
 \value{
 List of default of options.

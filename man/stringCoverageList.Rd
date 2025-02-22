@@ -4,7 +4,9 @@
 \name{stringCoverageList}
 \alias{stringCoverageList}
 \title{Aggregated string coverage.}
-\format{A list of \link{tibble}'s one for each of the 10 markers, showing the aggregated information on a string-by-string basis.}
+\format{
+A list of \link[tibble]{tibble}'s one for each of the 10 markers, showing the aggregated information on a string-by-string basis.
+}
 \usage{
 data("stringCoverageList")
 }

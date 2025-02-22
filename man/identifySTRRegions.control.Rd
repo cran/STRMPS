@@ -4,9 +4,17 @@
 \alias{identifySTRRegions.control}
 \title{Control function for identifySTRRegions}
 \usage{
-identifySTRRegions.control(colList = NULL, numberOfThreads = 4L,
-  reversed = TRUE, includeReverseComplement = TRUE, combineLists = TRUE,
-  removeEmptyMarkers = TRUE, matchPatternMethod = "mclapply")
+identifySTRRegions.control(
+  colList = NULL,
+  numberOfThreads = 4L,
+  reversed = TRUE,
+  includeReverseComplement = TRUE,
+  combineLists = TRUE,
+  removeEmptyMarkers = TRUE,
+  matchPatternMethod = "mclapply",
+  indels = FALSE,
+  trace = FALSE
+)
 }
 \arguments{
 \item{colList}{The position of the forward, reverse, and motifLength columns in the flanking region tibble/data.frame. If 'NULL' a function searches for the words 'forward', 'reverse', and 'motif' ot identify the columns.}
@@ -22,6 +30,10 @@ identifySTRRegions.control(colList = NULL, numberOfThreads = 4L,
 \item{removeEmptyMarkers}{TRUE/FALSE: Should markers returning no identified regions be removed?}
 
 \item{matchPatternMethod}{Which method should be used to identify the flanking regions (only 'mclapply' implemented at the moment)?}
+
+\item{indels}{TRUE/FALSE: Allow indels as well as base mismatches?}
+
+\item{trace}{TRUE/FALSE: Show trace? Note: only used if bam list is supplied.}
 }
 \value{
 A control list setting default behaviour.

@@ -4,8 +4,10 @@
 \alias{mergeGenotypeStringCoverage}
 \title{Merge genotypeIdentifiedList and stringCoverageList.}
 \usage{
-mergeGenotypeStringCoverage(stringCoverageListObject,
-  noiseGenotypeIdentifiedListObject)
+mergeGenotypeStringCoverage(
+  stringCoverageListObject,
+  noiseGenotypeIdentifiedListObject
+)
 }
 \arguments{
 \item{stringCoverageListObject}{a stringCoverageList-object, created using the \link{stringCoverage}-function.}

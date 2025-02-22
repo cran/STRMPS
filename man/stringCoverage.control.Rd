@@ -4,29 +4,33 @@
 \alias{stringCoverage.control}
 \title{String coverage coontrol object}
 \usage{
-stringCoverage.control(motifLength = 4, Type = "AUTOSOMAL",
-  simpleReturn = TRUE, includeLUS = FALSE, numberOfThreads = 4L,
-  meanFunction = mean, includeAverageBaseQuality = FALSE, trace = FALSE,
-  uniquelyAssigned = TRUE)
+stringCoverage.control(
+  numberOfThreads = 4L,
+  simpleReturn = TRUE,
+  uniquelyAssigned = TRUE,
+  additionalFlags = FALSE,
+  numberOfMutations = 1,
+  includeAverageBaseQuality = FALSE,
+  meanFunction = mean,
+  trace = FALSE
+)
 }
 \arguments{
-\item{motifLength}{The motif lengths of each marker.}
-
-\item{Type}{The chromosome type of each marker (autosomal, X, or Y).}
+\item{numberOfThreads}{The number of cores used for parallelisation.}
 
 \item{simpleReturn}{TRUE/FALSE: Should the returned object be simplified?}
 
-\item{includeLUS}{TRUE/FALSE: Should the LUS of each region be calculated?}
+\item{uniquelyAssigned}{TRUE/FALSE: Should regions which are not uniquely assigned be removed?}
 
-\item{numberOfThreads}{The number of cores used for parallelisation.}
+\item{additionalFlags}{TRUE/FALSE: Create additional flags for assessing sequence reliability?}
 
-\item{meanFunction}{The function used to average the base qualities.}
+\item{numberOfMutations}{the maximum number of mutations (base-calling errors) allowed during flanking region identification.}
 
 \item{includeAverageBaseQuality}{Should the average base quality of the region be included?}
 
-\item{trace}{TRUE/FALSE: Show trace?}
+\item{meanFunction}{The function used to average the base qualities.}
 
-\item{uniquelyAssigned}{TRUE/FALSE: Should regions not uniquely assigned be removed?}
+\item{trace}{TRUE/FALSE: Show trace?}
 }
 \value{
 List of parameters used for the 'stringCoverage' function.

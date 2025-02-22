@@ -1,8 +1,17 @@
-## Used for suppressing dplyr/ggplot variable names...
-globalVariables(c("AdjustedBasePairs", "AggregateQuality", "Allele", "BasePairs", "Coverage",
-                  "ExpandedRegion", "ForwardFlank", "LUS", "Marker", "Motif", "MotifLength",
-                  "NeighbourAllele", "Quality", "Region", "Repeats", "ReverseFlank", "Type",
-                  "AlternativeRegion", "Observed", "Start"))
+# ## Used for suppressing dplyr variable names...
+globalVariables(
+    c(
+        "AdjustedBasePairs", "AggregateQuality", "Allele", "BasePairs", "Coverage",
+        "ExpandedRegion", "ForwardFlank", "LUS", "Marker", "Motif", "MotifLength",
+        "NeighbourAllele", "Quality", "Region", "Repeats", "ReverseFlank", "Type",
+        "AlternativeRegion", "Observed", "Start", "ForwardFlank", "ReverseFlank",
+        "NumberForwardInsertions", "NumberForwardDeletions", "ForwardMismatches",
+        "ForwardInsertions", "ReverseMismatches", "ReverseInsertions", "ReverseDeletions",
+        "NumberForwardMismatches", "NumberReverseMismatches", "FLAGBlocksWithDifferentLengths",
+        "Chromosome", "ForwardDeletions", "Genotype", "NumberReverseDeletions", "rname",
+        "NumberReverseInsertions", "list_names", "missing_names", "."
+    )
+)
 
 #' Identified STR regions
 #'
@@ -25,7 +34,7 @@ NULL
 #' @author Søren B. Vilsen \email{svilsen@@math.aau.dk}
 #' @keywords data
 #' @usage data("stringCoverageList")
-#' @format A list of \link{tibble}'s one for each of the 10 markers, showing the aggregated information on a string-by-string basis.
+#' @format A list of \link[tibble]{tibble}'s one for each of the 10 markers, showing the aggregated information on a string-by-string basis.
 NULL
 
 #' Genotype list
@@ -37,7 +46,7 @@ NULL
 #' @author Søren B. Vilsen \email{svilsen@@math.aau.dk}
 #' @keywords data
 #' @usage data("genotypeList")
-#' @format A list of \link{tibble}'s one for each of the 10 markers, showing which strings are the potential alleles based on the 'Coverage'.
+#' @format A list of \link[tibble]{tibble}'s one for each of the 10 markers, showing which strings are the potential alleles based on the 'Coverage'.
 NULL
 
 #' Noise list
@@ -49,7 +58,7 @@ NULL
 #' @author Søren B. Vilsen \email{svilsen@@math.aau.dk}
 #' @keywords data
 #' @usage data("noiseList")
-#' @format A list of \link{tibble}'s one for each of the 10 markers, showing which strings can be safely classified as noise based on the 'Coverage'.
+#' @format A list of \link[tibble]{tibble}'s one for each of the 10 markers, showing which strings can be safely classified as noise based on the 'Coverage'.
 NULL
 
 #' Combined string coverage and genotype information
@@ -61,7 +70,7 @@ NULL
 #' @author Søren B. Vilsen \email{svilsen@@math.aau.dk}
 #' @keywords data
 #' @usage data("stringCoverageGenotypeList")
-#' @format A list of \link{tibble}'s one for each of the 10 markers containing the combined string coverage and genotypic information.
+#' @format A list of \link[tibble]{tibble}'s one for each of the 10 markers containing the combined string coverage and genotypic information.
 NULL
 
 #' Flanking regions
@@ -73,7 +82,7 @@ NULL
 #' @author Søren B. Vilsen \email{svilsen@@math.aau.dk}
 #' @keywords data
 #' @usage data("flankingRegions")
-#' @format A \link{tibble} containing the flanks (forward and reverse), motif, motif length, adjustment need to make it compatible with CE, and the shifts needed for further trimming, for each marker
+#' @format A \link[tibble]{tibble} containing the flanks (forward and reverse), motif, motif length, adjustment need to make it compatible with CE, and the shifts needed for further trimming, for each marker
 NULL
 
 ##
@@ -131,9 +140,9 @@ NULL
 BLMM <- function(s, motifLength = 4, returnType = "numeric") {
     motifLength <- if (!is.integer(motifLength)) as.integer(motifLength) else motifLength
 
-    if (class(s) == "character") {
+    if (is(s, "character")) {
         sD <- DNAString(s)
-    } else if (class(s) == "DNAString"){
+    } else if (is(s, "DNAString")) {
         sD <- s
         s <- as.character(s)
     } else {
@@ -172,7 +181,8 @@ BLMM <- function(s, motifLength = 4, returnType = "numeric") {
     if (length(allRepeats) == 0) {
         allRepeats <- list("NA" = data.frame(Start = NA, End = NA, Repeats = NA))
     }
-    allRepeats <- enframe(allRepeats, name = "Motif") %>% unnest()
+
+    allRepeats <- enframe(allRepeats, name = "Motif") %>% unnest(cols = c("value"))
 
     reducedRepeats <- allRepeats
     i = 1
@@ -184,7 +194,10 @@ BLMM <- function(s, motifLength = 4, returnType = "numeric") {
         i = i + 1
     }
 
-    lusOfMotifs <- reducedRepeats %>% group_by(Motif) %>% filter(Repeats == max(Repeats)) %>% ungroup()
+    lusOfMotifs <- reducedRepeats %>%
+        group_by(Motif) %>%
+        filter(Repeats == max(Repeats)) %>%
+        ungroup()
     lus <- which.max(lusOfMotifs$Repeats)
 
     if (tolower(returnType) == "numeric") {
@@ -209,4 +222,12 @@ BLMM <- function(s, motifLength = 4, returnType = "numeric") {
 .loadRData <- function(fileName) {
     load(fileName)
     get(ls()[ls() != "fileName"])
+}
+
+.append_string <- function(x, s) {
+    paste0(s, x)
+}
+
+.to.na <- function(x) {
+    NA
 }

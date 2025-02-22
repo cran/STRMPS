@@ -4,8 +4,11 @@
 \alias{findNeighbours}
 \title{Find neighbours}
 \usage{
-findNeighbours(stringCoverageGenotypeListObject, searchDirection,
-  trace = FALSE)
+findNeighbours(
+  stringCoverageGenotypeListObject,
+  searchDirection,
+  trace = FALSE
+)
 }
 \arguments{
 \item{stringCoverageGenotypeListObject}{A \link{stringCoverageGenotypeList-class} object.}

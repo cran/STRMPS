@@ -118,8 +118,8 @@ solexaQualityProbability <- function(q) {
 
     sampleTibbleBind <- bind_rows(stringCoverageList)
     sampleTibble <- sampleTibbleBind %>%
-        left_join(variantDatabase %>% ungroup() %>% mutate(Observed = 1) %>% select(Region, Observed),
-                  by = c("Region")) %>%
+        left_join(variantDatabase %>% ungroup() %>% mutate(Observed = 1) %>% select(Marker, Type, Region, Observed),
+                  by = c("Marker", "Type", "Region")) %>%
         mutate(Observed = ifelse(is.na(Observed), 0, Observed))
     markers <- unique(sampleTibble$Marker)
 
@@ -180,7 +180,7 @@ solexaQualityProbability <- function(q) {
                             positions_equal <- which(strings_split[[1]] == strings_split[[2]])
 
                             probability_of_error <- .baseErrorProbabilityConditinal(qualities[all_combinations[j, 2]], positions_equal)
-                            weight_matrix[all_combinations[j, 1], all_combinations[j, 2]] <- probability_of_error ##* sampleTibble_ma$Coverage[true_regions_index[all_combinations[j, 1]]] / sum(sampleTibble_m$Coverage)
+                            weight_matrix[all_combinations[j, 1], all_combinations[j, 2]] <- probability_of_error
                         }
                     }
                 }
@@ -193,11 +193,6 @@ solexaQualityProbability <- function(q) {
                 weight_matrix_extended <- diag(probability_error_variant, nrow = length(probability_error_variant), ncol = length(probability_error_variant))
                 which_max <- apply(weight_matrix_extended, 2, which.max)
                 alternative_region <- varient_regions[which_max]
-
-                # if (length(probability_error_variant == 1)) {
-                #     if (probability_error_variant < 0.8^(nchar(regions)))
-                #         alternative_region = NA
-                # }
             }
 
             res <- sampleTibble_ma %>% mutate(AlternativeRegion = alternative_region)

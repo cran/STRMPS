@@ -4,8 +4,10 @@
 \alias{mergeNoiseStringCoverage}
 \title{Merge noiseIdentifiedList and stringCoverageList.}
 \usage{
-mergeNoiseStringCoverage(stringCoverageListObject,
-  noiseGenotypeIdentifiedListObject)
+mergeNoiseStringCoverage(
+  stringCoverageListObject,
+  noiseGenotypeIdentifiedListObject
+)
 }
 \arguments{
 \item{stringCoverageListObject}{a stringCoverageList-object, created using the \link{stringCoverage}-function.}

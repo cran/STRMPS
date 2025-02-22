@@ -4,7 +4,9 @@
 \name{identifiedSTRs}
 \alias{identifiedSTRs}
 \title{Identified STR regions}
-\format{A list with an element for each of the 10 identified markers indicating which sequences were identified for each marker.}
+\format{
+A list with an element for each of the 10 identified markers indicating which sequences were identified for each marker.
+}
 \usage{
 data("identifiedSTRs")
 }

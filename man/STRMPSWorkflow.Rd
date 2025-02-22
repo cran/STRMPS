@@ -4,8 +4,12 @@
 \alias{STRMPSWorkflow}
 \title{Workflow function}
 \usage{
-STRMPSWorkflow(input, output = NULL, continueCheckpoint = NULL,
-  control = workflow.control())
+STRMPSWorkflow(
+  input,
+  output = NULL,
+  continueCheckpoint = NULL,
+  control = workflow.control()
+)
 }
 \arguments{
 \item{input}{A path to a \code{.fastq}-file.}
@@ -28,9 +32,12 @@ An output folder can be provided to store the objects as \code{.RData}-files.
 \examples{
 readPath <- system.file('extdata', 'sampleSequences.fastq', package = 'STRMPS')
 \donttest{
-STRMPSWorkflow(readPath,
-               control = workflow.control(restrictType = "Autosomal",
-                                          numberOfThreads = 1)
-               )
+STRMPSWorkflow(
+    readPath,
+    control = workflow.control(
+        restrictType = "Autosomal",
+        numberOfThreads = 1
+    )
+)
 }
 }

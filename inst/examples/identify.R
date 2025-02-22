@@ -11,13 +11,14 @@ data("flankingRegions")
 readFile <- readFastq(readPath)
 sread(readFile)
 quality(readFile)
-
-# Identify the STR's of the file, both readPath and readFile can be used.
 \donttest{
-identifySTRRegions(reads = readFile, flankingRegions = flankingRegions,
-                   numberOfMutation = 1,
-                   control = identifySTRRegions.control(
-                       numberOfThreads = 1,
-                       includeReverseComplement = FALSE)
-                   )
+# Identify the STR's of the file, both readPath and readFile can be used.
+identifySTRRegions(
+    reads = readFile,
+    flankingRegions = flankingRegions,
+    numberOfMutation = 1,
+    control = identifySTRRegions.control(
+        numberOfThreads = 1,
+        includeReverseComplement = FALSE)
+)
 }

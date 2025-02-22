@@ -4,7 +4,9 @@
 \name{noiseList}
 \alias{noiseList}
 \title{Noise list}
-\format{A list of \link{tibble}'s one for each of the 10 markers, showing which strings can be safely classified as noise based on the 'Coverage'.}
+\format{
+A list of \link[tibble]{tibble}'s one for each of the 10 markers, showing which strings can be safely classified as noise based on the 'Coverage'.
+}
 \usage{
 data("noiseList")
 }

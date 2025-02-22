@@ -4,10 +4,16 @@
 \alias{stringCoverage}
 \title{Get string coverage STR identified objects.}
 \usage{
-stringCoverage(extractedReadsListObject, control = stringCoverage.control())
+stringCoverage(
+  extractedReadsListObject,
+  flankingRegions,
+  control = stringCoverage.control()
+)
 }
 \arguments{
-\item{extractedReadsListObject}{an extractedReadsList-object, created using the \link{identifySTRRegions}-function.}
+\item{extractedReadsListObject}{An extractedReadsList-object, created using the \link{identifySTRRegions}-function.}
+
+\item{flankingRegions}{containing marker ID/name, the directly adjacent forward and reverse flanking regions, used for identification.}
 
 \item{control}{an \link{stringCoverage.control}-object.}
 }
@@ -21,16 +27,14 @@ Returns a list, with an element for every marker in extractedReadsList-object, e
 # Regions identified using 'identifySTRs()'
 data("identifiedSTRs")
 
-# Limiting and restructuring
-sortedIncludedMarkers <- sapply(names(identifiedSTRs$identifiedMarkersSequencesUniquelyAssigned),
-                                function(m) which(m == flankingRegions$Marker))
-
 # Aggregate the strings
-stringCoverage(extractedReadsListObject = identifiedSTRs,
-               control = stringCoverage.control(
-                   motifLength = flankingRegions$MotifLength[sortedIncludedMarkers],
-                   Type = flankingRegions$Type[sortedIncludedMarkers],
-                   numberOfThreads = 1,
-                   trace = FALSE,
-                   simpleReturn = TRUE))
+stringCoverage(
+    extractedReadsListObject = identifiedSTRs,
+    flankingRegions = flankingRegions,
+    control = stringCoverage.control(
+        numberOfThreads = 1,
+        trace = FALSE,
+        simpleReturn = TRUE
+    )
+)
 }

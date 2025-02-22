@@ -3,7 +3,6 @@
 \name{phredQualityScore}
 \alias{phredQualityScore}
 \alias{solexaQualityScore}
-\alias{solexaQualityScore}
 \title{Convert probability to quality score}
 \usage{
 phredQualityScore(p)
